@@ -10,27 +10,28 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-input type="email" label="Enter email" 
+      <ion-input type="email" [(ngModel)]="email" label="Enter email"
       label-placement="floating" fill="outline" required
       placeholder="Enter email"  helperText="Enter a valid email"
-      errorText="Invalid email" ngModel email 
-      [counter]="true" maxlength="20"></ion-input>
+      errorText="Invalid email"
+      [counter]="true" maxlength="30"></ion-input>
 
-      <ion-input type="password" label="Enter password" 
+      <ion-input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password" label="Enter password" 
       label-placement="floating" fill="outline" required
       placeholder="Enter password"  helperText="Enter a valid password"
-      errorText="Invalid password" ngModel password 
+      errorText="Invalid password" 
       [counter]="true" maxlength="20">
-        <ion-button fill="clear" slot="end" aria-label="Show/hide">
-          <ion-icon slot="icon-only" name="eye" aria-hidden="true" size="medium"></ion-icon>
+        <ion-button fill="clear" slot="end" aria-label="Show/hide" (click)="togglePasswordVisibility()">
+          <ion-icon slot="icon-only" name="{{ showPassword ? 'eye-off' : 'eye' }}" aria-hidden="true" size="medium"></ion-icon>
         </ion-button>
       </ion-input>
+
       <div class="ion-text-right ion-padding-top">
         <ion-text>Forgot password?</ion-text>
       </div>
 
       <div class="ion-text-center ion-padding-top">
-        <ion-button (click)="verifyEmail()" [routerLink]="['/verify-email']" [disabled]="true">Log in</ion-button> 
+        <ion-button (click)="checkUser()" [routerLink]="['/user-home']" [disabled]="!ButtonControll()">Log in</ion-button> 
       </div>
     </ion-card-content>
   </ion-card>
